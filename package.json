@@ -9,8 +9,14 @@
     "pnpm": ">=7"
   },
   "scripts": {
+    "lint": "eslint --fix --ext .js,.ts packages/",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "prettier --write"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -18,7 +24,12 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "eslint": "^8.56.0",
+    "globals": "^15.8.0",
     "husky": "^8.0.2",
-    "typescript": "^5.5.4"
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.17.0"
   }
 }
