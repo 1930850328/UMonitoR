@@ -8,7 +8,6 @@
 [![license](https://img.shields.io/github/license/clouDr-f2e/mitojs)](https://github.com/clouDr-f2e/mitojs/blob/dev/LICENSE)
 [![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![GitHub last commit](https://img.shields.io/github/last-commit/clouDr-f2e/monitor.svg?style=flat-square)](https://github.com/clouDr-f2e/monitor/commits/master)
-[![build status](https://img.shields.io/travis/clouDr-f2e/monitor/master.svg?style=flat-square)](https://travis-ci.com/github/clouDr-f2e/monitor)
 [![codecov](https://codecov.io/gh/clouDr-f2e/monitor/branch/master/graph/badge.svg?token=W7JP5GDOM7)](https://codecov.io/gh/clouDr-f2e/monitor)
 
 </div>
@@ -20,7 +19,7 @@
 - 🔨 使用 `monorepo + pnpm + ts` 进行开发,做到`高内聚 低耦合`,可按需引入所需功能
 - 🔨 支持收集项目性能数据（`FCP` | `FMP` | `LCP` | `TTI` | `TLS`  ...）
 - 🔨 支持收集错误数据, 例如 `JS报错`、`异步任务错误`、`资源加载错误`
-- 🔨 支持收集用户数据: PV、`路由跳转（hash路由、history路由）、用户行为栈...
+- 🔨 支持收集用户数据: PV、路由跳转（hash路由、history路由）、用户行为栈...
 - 🔨 支持监控xhr、fetch请求
 - 🔨 支持多种上报方式，并且支持多种上报策略，不影响业务逻辑
 - 🔨 支持多种错误还原方式，瞬时定位项目错误
