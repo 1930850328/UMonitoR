@@ -11,7 +11,8 @@
   "scripts": {
     "lint": "eslint --fix --ext .js,.ts packages/",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commitlint": "commitlint --edit"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [

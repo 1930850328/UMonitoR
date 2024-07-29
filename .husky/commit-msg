@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-pnpm commitlint --edit "$1"
+echo "\033[34m[commit-msg] 进行 Git 检查\033[0m"
+pnpm commitlint -e $HUSKY_GIT_PARAMS
+echo  "\033[32m[pre-commit] Git 信息检查通过\033[0m"
