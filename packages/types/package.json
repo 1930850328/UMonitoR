@@ -1,0 +1,20 @@
+{
+  "name": "@websee/types",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "module": "dist/index.esm.js",
+  "publishConfig": {
+    "main": "dist/index.js"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:1930850328/Umoni.git"
+  }
+}
