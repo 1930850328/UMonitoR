@@ -5,14 +5,19 @@ import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import { uglify } from "rollup-plugin-uglify";
 import dts from "rollup-plugin-dts";
+import { fileURLToPath } from "url";
 import fs from "fs";
+import { dirname } from "path";
 import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const packagesDir = path.resolve(__dirname, "packages");
 const packageFiles = fs.readdirSync(packagesDir);
 function output(path) {
   return [
     {
-      input: [`./packages/${path}/src/index.ts`],
+      input: [`./packages/${path}/index.ts`],
       output: [
         {
           file: `./packages/${path}/dist/index.cjs.js`,
@@ -27,13 +32,13 @@ function output(path) {
         {
           file: `./packages/${path}/dist/index.js`,
           format: "umd",
-          name: "web-see",
+          name: "u-moni",
           sourcemap: true,
         },
         {
           file: `./packages/${path}/dist/index.min.js`,
           format: "umd",
-          name: "web-see",
+          name: "u-moni",
           sourcemap: true,
           plugins: [uglify()],
         },
@@ -47,13 +52,13 @@ function output(path) {
           },
           useTsconfigDeclarationDir: true,
         }),
-        resolve(),
         commonjs(),
+        resolve(),
         json(),
       ],
     },
     {
-      input: `./packages/${path}/src/index.ts`,
+      input: `./packages/${path}/index.ts`,
       output: [
         { file: `./packages/${path}/dist/index.cjs.d.ts`, format: "cjs" },
         { file: `./packages/${path}/dist/index.esm.d.ts`, format: "esm" },

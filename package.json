@@ -2,9 +2,8 @@
   "name": "hxf-monitor",
   "version": "1.0.0",
   "private": "true",
+  "type":"module",
   "description": "A Lightweight SDK For Monitor Web",
-  "main": "index.js",
-  "type": "module",
   "engines": {
     "node": ">=16",
     "pnpm": ">=7"
@@ -38,6 +37,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-json": "6.1.0",
     "commitizen": "^4.3.0",
     "compare-func": "^2.0.0",
     "conventional-changelog": "^6.0.0",
@@ -51,7 +51,14 @@
     "prettier": "^3.3.3",
     "rollup": "^4.19.1",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-dts": "^5.0.0",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "rollup-plugin-uglify": "^6.0.4",
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.17.0"
-  }
+  },
+  "repository": {
+      "type": "git",
+      "url": "git@github.com:1930850328/UMonitoR.git"
+    }
 }
