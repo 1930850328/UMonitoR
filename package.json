@@ -26,6 +26,10 @@
       "prettier --write"
     ]
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
