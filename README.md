@@ -4,11 +4,11 @@
 <p> A Lightweight SDK For Monitor Web</p>
 <p>一款轻量级的前端监控SDK</p>
 
-[![npm version](https://img.shields.io/npm/v/@zyf2e/monitor-web.svg?style=flat-square)](https://www.npmjs.com/package/@zyf2e/monitor-web)
-[![license](https://img.shields.io/github/license/clouDr-f2e/mitojs)](https://github.com/clouDr-f2e/mitojs/blob/dev/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@u-moni/core.svg?style=flat-square)](https://www.npmjs.com/package/@u-moni/core)
+[![license](https://img.shields.io/github/license/clouDr-f2e/mitojs)](https://www.npmjs.com/package/@u-moni/core)
 [![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![GitHub last commit](https://img.shields.io/github/last-commit/clouDr-f2e/monitor.svg?style=flat-square)](https://github.com/clouDr-f2e/monitor/commits/master)
-[![codecov](https://codecov.io/gh/clouDr-f2e/monitor/branch/master/graph/badge.svg?token=W7JP5GDOM7)](https://codecov.io/gh/clouDr-f2e/monitor)
+[![GitHub last commit](https://img.shields.io/github/last-commit/1930850328/UMonitoR.svg?style=flat-square)](https://github.com/1930850328/UMonitoR)
+
 
 </div>
 
