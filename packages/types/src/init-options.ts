@@ -29,3 +29,8 @@ export interface PerformanceInitOptions extends InitBaseOptions {
 export interface RecordScreenInitOptions extends InitBaseOptions {
   recordScreentime?: number; // 单次录屏时长，单位为秒
 }
+
+export type InitOptions =
+  | RecordScreenInitOptions
+  | PerformanceInitOptions
+  | CoreInitOptions;

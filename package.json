@@ -2,7 +2,7 @@
   "name": "hxf-monitor",
   "version": "1.0.0",
   "private": "true",
-  "type":"module",
+  "type": "module",
   "description": "A Lightweight SDK For Monitor Web",
   "engines": {
     "node": ">=16",
@@ -38,10 +38,10 @@
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@rollup/plugin-json": "6.1.0",
     "commitizen": "^4.3.0",
     "compare-func": "^2.0.0",
     "conventional-changelog": "^6.0.0",
@@ -54,15 +54,18 @@
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.3",
     "rollup": "^4.19.1",
-    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-dts": "^5.0.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.34.1",
     "rollup-plugin-uglify": "^6.0.4",
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.17.0"
   },
   "repository": {
-      "type": "git",
-      "url": "git@github.com:1930850328/UMonitoR.git"
-    }
+    "type": "git",
+    "url": "git@github.com:1930850328/UMonitoR.git"
+  },
+  "dependencies": {
+    "tslib": "^2.6.3"
+  }
 }
