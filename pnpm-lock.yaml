@@ -97,18 +97,39 @@ importers:
         specifier: workspace:*
         version: link:../types
 
-  packages/core: {}
+  packages/core:
+    dependencies:
+      '@u-moni/common':
+        specifier: workspace:*
+        version: link:../common
+      '@u-moni/types':
+        specifier: workspace:*
+        version: link:../types
 
-  packages/performance: {}
+  packages/performance:
+    dependencies:
+      '@u-moni/common':
+        specifier: workspace:*
+        version: link:../common
+      '@u-moni/types':
+        specifier: workspace:*
+        version: link:../types
 
-  packages/recordScreen: {}
+  packages/recordScreen:
+    dependencies:
+      '@u-moni/common':
+        specifier: workspace:*
+        version: link:../common
+      '@u-moni/types':
+        specifier: workspace:*
+        version: link:../types
 
   packages/types: {}
 
 packages:
 
   '@babel/code-frame@7.24.7':
-    resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==, tarball: https://nexus3.bilibili.co/repository/npm-public/@babel/code-frame/-/code-frame-7.24.7.tgz}
+    resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-identifier@7.24.7':
@@ -212,7 +233,7 @@ packages:
     engines: {node: '>=v18'}
 
   '@commitlint/load@19.2.0':
-    resolution: {integrity: sha512-XvxxLJTKqZojCxaBQ7u92qQLFMMZc4+p9qrIq/9kJDy8DOrEa7P1yx7Tjdc2u2JxIalqT4KOGraVgCE7eCYJyQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/@commitlint/load/-/load-19.2.0.tgz}
+    resolution: {integrity: sha512-XvxxLJTKqZojCxaBQ7u92qQLFMMZc4+p9qrIq/9kJDy8DOrEa7P1yx7Tjdc2u2JxIalqT4KOGraVgCE7eCYJyQ==}
     engines: {node: '>=v18'}
 
   '@commitlint/message@19.0.0':

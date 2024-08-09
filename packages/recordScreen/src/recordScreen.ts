@@ -1,4 +1,4 @@
-import { BasePlugin } from "./base";
+import { BasePlugin } from "../../common/src/base";
 import { PluginName } from "@u-moni/types";
 
 export class recordScreenPlugin extends BasePlugin {

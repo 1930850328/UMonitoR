@@ -1,6 +1,6 @@
 {
   "name": "@u-moni/core",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "",
   "main": "index.ts",
   "module": "dist/index.esm.js",
@@ -13,6 +13,10 @@
   ],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@u-moni/types": "workspace:*",
+    "@u-moni/common": "workspace:*"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:1930850328/UMonitoR.git"
