@@ -1,5 +1,5 @@
 export enum PluginName {
-  CORE = "core",
+  ERROR = "error",
   PERFORMANCE = "performance",
   RECORDSCREEN = "recordScreen",
 }

@@ -4,8 +4,8 @@ interface InitBaseOptions {
   disabled?: boolean; // 是否禁用u-moni
 }
 
-// core模块主要是监控错误
-export interface CoreInitOptions extends InitBaseOptions {
+// error模块主要是监控错误
+export interface ErrorInitOptions extends InitBaseOptions {
   isMonitorXHR?: boolean; // 是否监控xhr
   isMonitorFetch?: boolean; // 是否监控fetch
   isMonitorError?: boolean; // 是否监控error事件
@@ -33,4 +33,4 @@ export interface RecordScreenInitOptions extends InitBaseOptions {
 export type InitOptions =
   | RecordScreenInitOptions
   | PerformanceInitOptions
-  | CoreInitOptions;
+  | ErrorInitOptions;

@@ -6,7 +6,7 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 
-import Umoni from "../../../../packages/core";
+import Umoni from "../../../../packages/error";
 
 const app = createApp(App);
 

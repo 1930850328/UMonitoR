@@ -97,7 +97,7 @@ importers:
         specifier: workspace:*
         version: link:../types
 
-  packages/core:
+  packages/error:
     dependencies:
       '@u-moni/common':
         specifier: workspace:*

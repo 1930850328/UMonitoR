@@ -1,5 +1,5 @@
 import { InitOptions } from "@u-moni/types";
-import { CorePlugin } from "./src/corePlugin";
+import { ErrorPlugin } from "./src/errorPlugin";
 import { setFlag, hasFlag, global } from "@u-moni/common/";
 
 function init(options: InitOptions) {
@@ -10,15 +10,14 @@ function init(options: InitOptions) {
   }
   if (options.disabled) return;
 
-  const instance = new CorePlugin();
+  const instance = new ErrorPlugin();
   instance.bindOptions(options);
 }
 
 function install(Vue: any, options: InitOptions) {
-  console.log("Core install!!!");
+  console.log("Error sdk install!!!");
   if (hasFlag("vue")) return;
   setFlag("vue", true);
-  console.log(global, global.__Umoni__);
   const handler = Vue.config.errorHandler;
   // vue项目在Vue.config.errorHandler中上报错误
   Vue.config.errorHandler = function (
