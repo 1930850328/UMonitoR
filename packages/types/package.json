@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.ts",
   "module": "dist/index.esm.js",
+  "module": "index.ts",
   "publishConfig": {
     "main": "dist/index.js"
   },

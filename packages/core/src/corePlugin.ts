@@ -1,14 +1,17 @@
 import { BasePlugin } from "@u-moni/common";
-import { PluginName } from "@u-moni/types";
+import { PluginName, CoreInitOptions } from "@u-moni/types";
 
 export class CorePlugin extends BasePlugin {
   name: PluginName.CORE;
-  constructor() {
+  constructor(options = {} as CoreInitOptions) {
     super(PluginName.CORE);
     this.name = PluginName.CORE;
+    this.bindOptions(options);
   }
   bindOptions(options: any): void {
     console.log("Core bindOptions", options);
+
+    this.core();
   }
   core(): void {
     console.log("Core core");

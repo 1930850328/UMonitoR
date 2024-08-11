@@ -9,7 +9,9 @@ export function init(options: InitOptions, type: string) {
     );
   }
   if (options.disabled) return;
+
   handlingOptions(options, type);
+
   // 调用各模块的core方法
   switch (type) {
     case "core":
