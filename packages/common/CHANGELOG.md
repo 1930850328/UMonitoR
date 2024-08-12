@@ -1,5 +1,11 @@
 # @u-moni/common
 
+## 1.1.3
+
+### Patch Changes
+
+- refactor the init
+
 ## 1.1.2
 
 ### Patch Changes

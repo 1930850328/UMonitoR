@@ -1,5 +1,13 @@
 # @u-moni/performance
 
+## 2.1.4
+
+### Patch Changes
+
+- refactor the init
+- Updated dependencies
+  - @u-moni/common@1.1.3
+
 ## 2.1.3
 
 ### Patch Changes

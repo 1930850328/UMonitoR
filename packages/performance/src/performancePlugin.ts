@@ -11,10 +11,9 @@ export class PerformancePlugin extends BasePlugin {
   isMonitorWhiteScreen?: boolean; // 是否检测白屏
   isSkeletonProject?: boolean; // 是否有骨架屏
   whiteScreenElements?: string[]; // 白屏检测的容器列表
-  constructor(options: PerformanceInitOptions) {
+  constructor() {
     super(PluginName.PERFORMANCE);
     this.name = PluginName.PERFORMANCE;
-    this.bindOptions(options);
   }
   bindOptions(options: PerformanceInitOptions): void {
     console.log("Performance bindOptions", options);
@@ -47,6 +46,8 @@ export class PerformancePlugin extends BasePlugin {
   }
   core(): void {
     console.log("Performance core");
+    if (this.disabled) return;
+    // 监听click事件
   }
   processingData(data: any): void {
     console.log("Performance processingData", data);
