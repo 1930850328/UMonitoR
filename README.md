@@ -51,7 +51,7 @@ import recordscreen from '@u-moni/recordscreen';
 // 注册错误检测插件
 Vue.use(error, {
   dsn: 'http://aaa.com/', // 上报的地址
-  apikey: 'project1', // 项目唯一的id
+  appId: 'project1', // 项目唯一的id
   isMonitorXHR: true, // 是否监控xhr
   isMonitorFetch: true, // 是否监控fetch
   isMonitorError: true, // 是否监控error事件
@@ -74,7 +74,7 @@ import recordscreen from '@u-moni/recordscreen';
 const app = createApp(App);
 app.use(error, {
   dsn: 'http://aaa.com/', // 上报的地址
-  apikey: 'project1', // 项目唯一的id
+  appId: 'project1', // 项目唯一的id
   isMonitorXHR: true, // 是否监控xhr
   isMonitorFetch: true, // 是否监控fetch
   isMonitorError: true, // 是否监控error事件
@@ -95,7 +95,7 @@ app.use(recordscreen, { ... });
 > 2. 每个sdk间通用配置项也是独立的，即Error和Performance的dsn和appId可以不同，请根据实际情况选择，若是同一个项目最好还是使用相同的appId。
 
 |    Name    | Type      | Default | Description                                    |
-| :--------: | --------- | ------- | ---------------------------------------------- | --- |
+| :--------: | --------- | ------- | ---------------------------------------------- | 
 |   `dsn`    | `string`  | `""`    | (必传项) 上报接口的地址，post 方法             |
 |  `appId`   | `string`  | `""`    | (必传项) 每个项目对应一个 appId，唯一标识      |     |
 | `disabled` | `boolean` | `false` | 默认是开启 SDK，为 true 时，会将 对应插件 禁用 |
