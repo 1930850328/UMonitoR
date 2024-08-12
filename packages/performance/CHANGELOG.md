@@ -1,5 +1,11 @@
 # @u-moni/performance
 
+## 2.1.3
+
+### Patch Changes
+
+- update Plugin
+
 ## 2.1.2
 
 ### Patch Changes
