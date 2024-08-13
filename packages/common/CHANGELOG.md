@@ -1,5 +1,13 @@
 # @u-moni/common
 
+## 1.1.5
+
+### Patch Changes
+
+- add Subscribe and functionPlugin
+- Updated dependencies
+  - @u-moni/types@1.0.3
+
 ## 1.1.4
 
 ### Patch Changes

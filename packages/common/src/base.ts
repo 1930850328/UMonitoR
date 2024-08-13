@@ -1,6 +1,6 @@
-import { InitOptions, PluginName } from "@u-moni/types";
+import { InitOptions, PluginName, FunctionPluginName } from "@u-moni/types";
 
-// 所有插件的基础类
+// 所有大插件的基础类
 export abstract class BasePlugin {
   public name: PluginName;
   constructor(name: PluginName) {
@@ -14,4 +14,18 @@ export abstract class BasePlugin {
   abstract processingData(data: any): void;
   // 销毁方法
   abstract destroy(): void;
+}
+
+// 所有功能插件的基础类
+export abstract class BaseFunctionPlugin {
+  public name: FunctionPluginName;
+  constructor(name: FunctionPluginName) {
+    this.name = name;
+  }
+  // 监听方法
+  abstract monitor(notify: Function): void;
+  // 数据转换
+  abstract transform(data: any): void;
+  // 数据消费
+  abstract consumer(data: any): void;
 }

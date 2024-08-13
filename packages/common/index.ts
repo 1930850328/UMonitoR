@@ -4,3 +4,4 @@ export * from "./src/base";
 export * from "./src/global";
 export * from "./src/vaildType";
 export * from "./src/handleException";
+export * from "./src/subscribe";

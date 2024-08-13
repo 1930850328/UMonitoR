@@ -4,6 +4,15 @@ export enum PluginName {
   RECORDSCREEN = "recordScreen",
 }
 
+export enum ErrorPluginName {
+  XHR = "xhr",
+  FETCH = "fetch",
+  ERROR = "error",
+  UNHANDLEDREJECTION = "unhandledrejection",
+}
+
+export type FunctionPluginName = ErrorPluginName;
+
 export interface Window {
   __Umoni__: {
     [key: string]: any;

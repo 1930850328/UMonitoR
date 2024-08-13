@@ -50,7 +50,8 @@ export class PerformancePlugin extends BasePlugin {
   core(): void {
     console.log(`${this.SDK_NAME}${this.SDK_VERSION} install success!!!`);
     if (this.disabled) return;
-    // 监听click事件
+
+    // 将性能、用户相关可拔插插件引入
   }
   processingData(data: any): void {
     console.log("Performance processingData", data);

@@ -126,3 +126,11 @@ app.use(recordscreen, { ... });
 |        Name        | Type     | Default | Description                |
 | :----------------: | -------- | ------- | -------------------------- |
 | `recordScreentime` | `number` | `10`    | 单次录屏时长，默认值为 10s |
+
+
+## 相关文档
+[《前端监控插件化实现》](https://www.yuque.com/u37746825/mbolqn/qy5lcdarkoaxql3c) 
+
+[《前端监控SDK项目方案规划》](https://www.yuque.com/u37746825/mbolqn/our19qt8be58lfki) 
+
+[《前端监控SDK需求实现文档》](https://www.yuque.com/u37746825/mbolqn/qz1dvsyptr5gzvb3) 
