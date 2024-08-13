@@ -1,5 +1,13 @@
 # @u-moni/performance
 
+## 2.1.5
+
+### Patch Changes
+
+- add SDK_NAME and SDK_VERSION
+- Updated dependencies
+  - @u-moni/common@1.1.4
+
 ## 2.1.4
 
 ### Patch Changes

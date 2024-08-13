@@ -1,5 +1,11 @@
 # @u-moni/common
 
+## 1.1.4
+
+### Patch Changes
+
+- add SDK_NAME and SDK_VERSION
+
 ## 1.1.3
 
 ### Patch Changes

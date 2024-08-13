@@ -1,8 +1,10 @@
 import { BasePlugin, vaildType } from "@u-moni/common";
 import { PluginName, ErrorInitOptions } from "@u-moni/types";
-
+import { version } from "../package.json";
 export class ErrorPlugin extends BasePlugin {
   name: PluginName.ERROR;
+  SDK_NAME: string = "@u-moni/error";
+  SDK_VERSION: string = version;
   disabled?: boolean = false;
   isMonitorXHR?: boolean = true; // 是否监控xhr
   isMonitorFetch?: boolean = true; // 是否监控fetch
@@ -37,7 +39,7 @@ export class ErrorPlugin extends BasePlugin {
     this.core();
   }
   core(): void {
-    console.log("error core");
+    console.log(`${this.SDK_NAME}${this.SDK_VERSION} install success!!!`);
   }
   processingData(data: any): void {
     console.log("Core processingData", data);

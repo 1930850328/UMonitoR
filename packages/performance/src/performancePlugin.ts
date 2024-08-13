@@ -1,8 +1,10 @@
 import { BasePlugin, vaildType } from "@u-moni/common/";
 import { PluginName, PerformanceInitOptions } from "@u-moni/types";
-
+import { version } from "../package.json";
 export class PerformancePlugin extends BasePlugin {
   name: PluginName.PERFORMANCE;
+  SDK_NAME: string = "@u-moni/performance";
+  SDK_VERSION: string = version;
   disabled?: boolean = false;
   isMonitorPerformance?: boolean; // 是否获取页面性能指标
   isMonitorClick?: boolean; // 是否监听click事件
@@ -11,9 +13,10 @@ export class PerformancePlugin extends BasePlugin {
   isMonitorWhiteScreen?: boolean; // 是否检测白屏
   isSkeletonProject?: boolean; // 是否有骨架屏
   whiteScreenElements?: string[]; // 白屏检测的容器列表
-  constructor() {
+  constructor(option: PerformanceInitOptions) {
     super(PluginName.PERFORMANCE);
     this.name = PluginName.PERFORMANCE;
+    this.bindOptions(option);
   }
   bindOptions(options: PerformanceInitOptions): void {
     console.log("Performance bindOptions", options);
@@ -45,7 +48,7 @@ export class PerformancePlugin extends BasePlugin {
     this.core();
   }
   core(): void {
-    console.log("Performance core");
+    console.log(`${this.SDK_NAME}${this.SDK_VERSION} install success!!!`);
     if (this.disabled) return;
     // 监听click事件
   }

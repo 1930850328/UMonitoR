@@ -8,9 +8,8 @@ export function initPlugin(options: InitOptions, type: string, plugin: any) {
     );
   }
   if (options.disabled) return;
-
-  const instance = new plugin();
-  instance.bindOptions(options);
+  // 启动插件
+  new plugin(options);
 }
 
 export function installPlugin(
