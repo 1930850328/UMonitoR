@@ -19,6 +19,27 @@ export interface Window {
   };
 }
 
-export interface Umoni {
+export interface UmoniType {
+  option: {
+    [key: string]: any;
+  };
   [key: string]: any;
+}
+
+export enum EVENTTYPES {
+  XHR = "xhr",
+  FETCH = "fetch",
+  CLICK = "click",
+  HISTORY = "history",
+  ERROR = "error",
+  HASHCHANGE = "hashchange",
+  UNHANDLEDREJECTION = "unhandledrejection",
+  RESOURCE = "resource",
+  DOM = "dom",
+  VUE = "vue",
+  REACT = "react",
+  CUSTOM = "custom",
+  PERFORMANCE = "performance",
+  RECORDSCREEN = "recordScreen",
+  WHITESCREEN = "whiteScreen",
 }

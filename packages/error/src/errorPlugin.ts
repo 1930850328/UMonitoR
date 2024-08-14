@@ -1,7 +1,12 @@
-import { BasePlugin, vaildType } from "@u-moni/common";
+import {
+  BasePlugin,
+  vaildType,
+  Subscribe,
+  _Umoni,
+  setOptionFlag,
+} from "@u-moni/common";
 import { PluginName, ErrorInitOptions } from "@u-moni/types";
 import { version } from "../package.json";
-import { Subscribe } from "@u-moni/common";
 import { xhrPlugin } from "./xhrPlugin";
 
 export class ErrorPlugin extends BasePlugin {
@@ -22,6 +27,7 @@ export class ErrorPlugin extends BasePlugin {
   }
   bindOptions(options: ErrorInitOptions): void {
     console.log("error bindOptions", options);
+
     const {
       disabled,
       isMonitorXHR,
@@ -41,6 +47,16 @@ export class ErrorPlugin extends BasePlugin {
       isMonitorUnhandledrejection,
       "boolean",
     ) && (this.isMonitorUnhandledrejection = isMonitorUnhandledrejection);
+
+    // 启动监听插件
+    setOptionFlag("isXhrPlugin", this.isMonitorXHR); // 启动xhr监听
+    setOptionFlag("isFetchPlugin", this.isMonitorFetch); // 启动fetch监听
+    setOptionFlag("isErrorPlugin", this.isMonitorError); // 启动error监听
+    setOptionFlag(
+      "isUnhandledrejectionPlugin",
+      this.isMonitorUnhandledrejection,
+    ); // 启动unhandledrejection监听
+
     this.core();
   }
   core(): void {

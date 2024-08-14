@@ -1,5 +1,6 @@
 import { InitOptions } from "@u-moni/types";
 import { setFlag, hasFlag } from "./global";
+import { setupReplace } from "./replace";
 
 export function initPlugin(options: InitOptions, type: string, plugin: any) {
   if (!options.appId || !options.dsn) {
@@ -8,6 +9,9 @@ export function initPlugin(options: InitOptions, type: string, plugin: any) {
     );
   }
   if (options.disabled) return;
+
+  // 进行一系列替换
+  setupReplace();
   // 启动插件
   new plugin(options);
 }
