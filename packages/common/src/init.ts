@@ -1,6 +1,6 @@
 import { InitOptions } from "@u-moni/types";
 import { setFlag, hasFlag } from "./global";
-import { setupReplace } from "./replace";
+import { handleError } from "./plugins/errorPlugin";
 
 export function initPlugin(options: InitOptions, type: string, plugin: any) {
   if (!options.appId || !options.dsn) {
@@ -10,8 +10,6 @@ export function initPlugin(options: InitOptions, type: string, plugin: any) {
   }
   if (options.disabled) return;
 
-  // 进行一系列替换
-  setupReplace();
   // 启动插件
   new plugin(options);
 }
@@ -31,8 +29,8 @@ export function installPlugin(
     instance: any,
     info: string,
   ): void {
-    console.log(err);
-    //   HandleEvents.handleError(err);
+    console.log(err, instance, info);
+    handleError(err);
     if (handler) handler.apply(null, [err, instance, info]);
   };
   initPlugin(options, type, plugin);

@@ -1,5 +1,17 @@
 # @u-moni/error
 
+## 2.2.0
+
+### Minor Changes
+
+- add errorPlugin
+
+### Patch Changes
+
+- Updated dependencies
+  - @u-moni/common@1.2.0
+  - @u-moni/types@1.1.0
+
 ## 2.1.5
 
 ### Patch Changes

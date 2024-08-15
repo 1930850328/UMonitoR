@@ -1,13 +1,13 @@
 import {
   BasePlugin,
   vaildType,
-  Subscribe,
   _Umoni,
   setOptionFlag,
+  xhrPlugin,
+  errorPlugin,
 } from "@u-moni/common";
 import { PluginName, ErrorInitOptions } from "@u-moni/types";
 import { version } from "../package.json";
-import { xhrPlugin } from "./xhrPlugin";
 
 export class ErrorPlugin extends BasePlugin {
   name: PluginName.ERROR;
@@ -17,12 +17,10 @@ export class ErrorPlugin extends BasePlugin {
   isMonitorXHR?: boolean = true; // 是否监控xhr
   isMonitorFetch?: boolean = true; // 是否监控fetch
   isMonitorError?: boolean = true; // 是否监控error事件
-  Subscribe: Subscribe;
   isMonitorUnhandledrejection?: boolean = true; // 是否监控 unhandledrejection
   constructor(options = {} as ErrorInitOptions) {
     super(PluginName.ERROR);
     this.name = PluginName.ERROR;
-    this.Subscribe = new Subscribe();
     this.bindOptions(options);
   }
   bindOptions(options: ErrorInitOptions): void {
@@ -62,26 +60,29 @@ export class ErrorPlugin extends BasePlugin {
   core(): void {
     this.isMonitorXHR && this.use(xhrPlugin);
     this.isMonitorFetch && console.log("监控fetch");
-    this.isMonitorError && console.log("监控error事件");
+    this.isMonitorError && this.use(errorPlugin);
     this.isMonitorUnhandledrejection &&
       console.log("监控unhandledrejection事件");
     console.log(`${this.SDK_NAME}${this.SDK_VERSION} install success!!!`);
   }
   use(FunctionPlugin: any): void {
+    const Subscribe = _Umoni.subscribe;
     const plugin = new FunctionPlugin();
     if (!plugin || !plugin.name) return;
     // 大概逻辑就是：发布订阅中心订阅插件的事件，当事件发生时，触发发布订阅中心的notify方法去执行插件的处理数据方法
 
     // 调用插件的监听方法
-    plugin.monitor(this.Subscribe.notify); // todo 不知道不绑定this有没有问题
+    plugin.monitor.call(this, Subscribe.notify.bind(Subscribe));
 
     // 调用插件的处理数据方法（格式转换 & 消费）
     const process = (...args: any[]) => {
+      // 转换格式
       const res = plugin.transform.apply(plugin, args);
+      // 消费数据（）
       plugin.consumer(res);
     };
 
-    this.Subscribe?.sub(plugin.name, process);
+    Subscribe?.sub(plugin.name, process);
   }
   processingData(data: any): void {
     console.log("Core processingData", data);

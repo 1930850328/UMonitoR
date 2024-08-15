@@ -1,6 +1,7 @@
+import { _Umoni } from "./global";
 import handleException from "./handleException";
 
-export class Subscribe {
+class Subscribe {
   dep: Map<any, any> = new Map<any, any>();
   constructor() {}
   sub(event: string, fn: Function) {
@@ -25,4 +26,7 @@ export class Subscribe {
       },
     );
   }
+}
+if (!_Umoni.subscribe) {
+  _Umoni.subscribe = new Subscribe();
 }

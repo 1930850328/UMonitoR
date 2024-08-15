@@ -1,5 +1,13 @@
 # @u-moni/performance
 
+## 2.1.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @u-moni/common@1.2.0
+  - @u-moni/types@1.1.0
+
 ## 2.1.6
 
 ### Patch Changes

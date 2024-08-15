@@ -6,3 +6,5 @@ export * from "./src/vaildType";
 export * from "./src/handleException";
 export * from "./src/subscribe";
 export * from "./src/replace";
+export * from "./src/plugins/index";
+export * from "./src/transport";

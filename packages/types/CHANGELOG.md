@@ -1,5 +1,11 @@
 # @u-moni/types
 
+## 1.1.0
+
+### Minor Changes
+
+- add errorPlugin
+
 ## 1.0.3
 
 ### Patch Changes

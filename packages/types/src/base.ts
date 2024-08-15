@@ -43,3 +43,8 @@ export enum EVENTTYPES {
   RECORDSCREEN = "recordScreen",
   WHITESCREEN = "whiteScreen",
 }
+
+export enum HTTPTYPE {
+  XHR = "xhr",
+  FETCH = "fetch",
+}

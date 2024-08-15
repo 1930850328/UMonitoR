@@ -1,37 +1,22 @@
-import { _Umoni, getOptionFlag } from "./global";
-import { EVENTTYPES } from "@u-moni/types";
+import { _Umoni } from "./global";
 
-export function setupReplace() {
-  getOptionFlag("isXhrPlugin") && addReplace("isXhrPlugin");
+// 核心就在callback上，以原来的函数作为参数，执行并重写原有函数
+export function replaceAop(source: any, name: string, callback: Function) {
+  if (source === undefined) return;
+  if (name in source) {
+    const original = source[name];
+    const wrapped = callback(original); //
+    if (typeof wrapped === "function") {
+      source[name] = wrapped;
+    }
+  }
 }
 
-function addReplace(type: string) {
-  switch (type) {
-    case EVENTTYPES.WHITESCREEN:
-      //   whiteScreen();
-      break;
-    case EVENTTYPES.XHR:
-      //   xhrReplace();
-      break;
-    case EVENTTYPES.FETCH:
-      //   fetchReplace();
-      break;
-    case EVENTTYPES.ERROR:
-      //   listenError();
-      break;
-    case EVENTTYPES.HISTORY:
-      //   historyReplace();
-      break;
-    case EVENTTYPES.UNHANDLEDREJECTION:
-      //   unhandledrejectionReplace();
-      break;
-    case EVENTTYPES.CLICK:
-      //   domReplace();
-      break;
-    case EVENTTYPES.HASHCHANGE:
-      //   listenHashchange();
-      break;
-    default:
-      break;
-  }
+export function on(
+  target: any,
+  eventName: string,
+  handler: Function,
+  opitons = false,
+) {
+  target.addEventListener(eventName, handler, opitons); // 默认冒泡捕获
 }
