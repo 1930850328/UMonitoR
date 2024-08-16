@@ -1,6 +1,6 @@
 import { BaseFunctionPlugin } from "../base";
-import { global, _Umoni } from "../global";
-import { on } from "../replace";
+import { global, _Umoni, getFlag } from "../global";
+import { on } from "../../index";
 import { ErrorPluginName, EVENTTYPES } from "@u-moni/types";
 import ErrorStackParser from "error-stack-parser";
 
@@ -12,37 +12,42 @@ interface ErrorTarget {
   message?: string;
 }
 
-export class errorPlugin extends BaseFunctionPlugin {
+export class commonErrorPlugin extends BaseFunctionPlugin {
   name: ErrorPluginName.ERROR;
   constructor() {
     super(ErrorPluginName.ERROR);
     this.name = ErrorPluginName.ERROR;
   }
   // 监听方法
-  monitor(notify: Function): void {
+  monitor(): void {
     // 之前在use那注册的时候就绑定了this为对应的大插件实例
-    errorMonitor.call(this, notify);
+    errorMonitor.call(this);
   }
   // 数据转换
   transform(data: any): void {
-    console.log("error transform", data);
+    return data;
   }
   // 数据消费
-  consumer(data: any): void {}
+  consumer(data: any): void {
+    const transport = _Umoni.transport;
+    transport.send(data);
+  }
 }
 
-function errorMonitor(this: any, notify: Function) {
+function errorMonitor() {
   // 监听全局错误
   on(global, "error", function (event: ErrorTarget) {
     console.log("error事件", event);
     handleError(event);
-    notify(EVENTTYPES.ERROR, event);
   });
   console.log("error监控启动");
 }
 
 export function handleError(ev: ErrorTarget): void {
-  const transport = _Umoni.transport;
+  // 如果是通过框架捕获的错误，就不会通过上面的monitor监听到，所以notify下移
+  const Subscribe = _Umoni.subscribe;
+  const notify = Subscribe.notify.bind(Subscribe);
+
   const target = ev.target;
   if (!target || (ev.target && !ev.target.localName)) {
     // vue和react捕获的报错使用ev解析，异步错误使用ev.error解析
@@ -50,6 +55,8 @@ export function handleError(ev: ErrorTarget): void {
     const { fileName, columnNumber, lineNumber } = stackFrame;
     const errorData = {
       type: EVENTTYPES.ERROR,
+      sdkName: getFlag(`${EVENTTYPES.ERROR}SdkName`),
+      sdkVersion: getFlag(`${EVENTTYPES.ERROR}SdkVersion`),
       status: "error",
       time: Date.now(),
       message: ev.message,
@@ -69,8 +76,11 @@ export function handleError(ev: ErrorTarget): void {
     //   );
     //   // 开启repeatCodeError第一次报错才上报
     //   if (!options.repeatCodeError || (options.repeatCodeError && !hashMapExist(hash))) {
-    return transport.send(errorData);
+    //  transport.send(errorData);
     //   }
+
+    //
+    notify(EVENTTYPES.ERROR, errorData);
   }
 
   // 资源加载报错

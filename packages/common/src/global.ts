@@ -23,6 +23,10 @@ export function hasFlag(type: string) {
   return _Umoni[type] ? true : false;
 }
 
+export function getFlag(type: string) {
+  return _Umoni[type] ? _Umoni[type] : false;
+}
+
 export function setFlag(type: string, value: any) {
   _Umoni[type] = value;
 }

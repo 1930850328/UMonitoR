@@ -3,6 +3,5 @@
 
 echo "\033[34m[pre-commit] 进行 ESLint 检查\033[0m"
 echo "\033[34m[pre-commit] 检查当前提交代码是否通过 ESLint [0m"
-pnpm version-packages
 pnpm lint-staged
 echo "\033[32m[pre-commit] ESLint 检查通过\033[0m"

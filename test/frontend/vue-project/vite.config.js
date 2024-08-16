@@ -12,4 +12,22 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  server: {
+    proxy: {
+      "/reportData": {
+        target: "http://localhost:8083/",
+        changeOrigin: true,
+      },
+      //   '/getmap': {
+      //     target: 'http://localhost:8083/',
+      //     changeOrigin: false,
+      //     secure: false,
+      //   },
+      //   '/getmgetRecordScreenIdp': {
+      //     target: 'http://localhost:8083/',
+      //     changeOrigin: false,
+      //     secure: false,
+      //   },
+    },
+  },
 });

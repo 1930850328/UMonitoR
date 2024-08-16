@@ -13,7 +13,7 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(Umoni, {
-  dsn: "aaa.com",
+  dsn: "/reportData",
   appId: "123",
 });
 

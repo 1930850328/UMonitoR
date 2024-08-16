@@ -1,5 +1,11 @@
 # @u-moni/common
 
+## 1.3.0
+
+### Minor Changes
+
+- 打通链路，添加上报函数
+
 ## 1.2.0
 
 ### Minor Changes

@@ -3,8 +3,9 @@ import {
   vaildType,
   _Umoni,
   setOptionFlag,
+  setFlag,
   xhrPlugin,
-  errorPlugin,
+  commonErrorPlugin,
 } from "@u-moni/common";
 import { PluginName, ErrorInitOptions } from "@u-moni/types";
 import { version } from "../package.json";
@@ -27,6 +28,8 @@ export class ErrorPlugin extends BasePlugin {
     console.log("error bindOptions", options);
 
     const {
+      dsn,
+      appId,
       disabled,
       isMonitorXHR,
       isMonitorFetch,
@@ -46,7 +49,12 @@ export class ErrorPlugin extends BasePlugin {
       "boolean",
     ) && (this.isMonitorUnhandledrejection = isMonitorUnhandledrejection);
 
-    // 启动监听插件
+    setFlag("errorSdkName", this.SDK_NAME);
+    setFlag("errorSdkVersion", this.SDK_VERSION);
+    // 设置全局参数
+    setOptionFlag("errorDsn", dsn);
+    setOptionFlag("errorAppId", appId);
+    setOptionFlag("errorDisabled", this.disabled);
     setOptionFlag("isXhrPlugin", this.isMonitorXHR); // 启动xhr监听
     setOptionFlag("isFetchPlugin", this.isMonitorFetch); // 启动fetch监听
     setOptionFlag("isErrorPlugin", this.isMonitorError); // 启动error监听
@@ -60,7 +68,7 @@ export class ErrorPlugin extends BasePlugin {
   core(): void {
     this.isMonitorXHR && this.use(xhrPlugin);
     this.isMonitorFetch && console.log("监控fetch");
-    this.isMonitorError && this.use(errorPlugin);
+    this.isMonitorError && this.use(commonErrorPlugin);
     this.isMonitorUnhandledrejection &&
       console.log("监控unhandledrejection事件");
     console.log(`${this.SDK_NAME}${this.SDK_VERSION} install success!!!`);
@@ -71,9 +79,6 @@ export class ErrorPlugin extends BasePlugin {
     if (!plugin || !plugin.name) return;
     // 大概逻辑就是：发布订阅中心订阅插件的事件，当事件发生时，触发发布订阅中心的notify方法去执行插件的处理数据方法
 
-    // 调用插件的监听方法
-    plugin.monitor.call(this, Subscribe.notify.bind(Subscribe));
-
     // 调用插件的处理数据方法（格式转换 & 消费）
     const process = (...args: any[]) => {
       // 转换格式
@@ -83,6 +88,8 @@ export class ErrorPlugin extends BasePlugin {
     };
 
     Subscribe?.sub(plugin.name, process);
+    // 调用插件的监听方法
+    plugin.monitor.call(this);
   }
   processingData(data: any): void {
     console.log("Core processingData", data);

@@ -1,2 +1,2 @@
 export * from "./xhrPlugin";
-export * from "./errorPlugin";
+export * from "./commonErrorPlugin";

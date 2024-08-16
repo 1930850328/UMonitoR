@@ -17,6 +17,6 @@ export function on(
   eventName: string,
   handler: Function,
   opitons = false,
-) {
+): any {
   target.addEventListener(eventName, handler, opitons); // 默认冒泡捕获
 }

@@ -1,5 +1,16 @@
 # @u-moni/error
 
+## 2.3.0
+
+### Minor Changes
+
+- 打通链路，添加上报函数
+
+### Patch Changes
+
+- Updated dependencies
+  - @u-moni/common@1.3.0
+
 ## 2.2.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 import { InitOptions } from "@u-moni/types";
 import { setFlag, hasFlag } from "./global";
-import { handleError } from "./plugins/errorPlugin";
+import { handleError } from "./plugins/commonErrorPlugin";
 
 export function initPlugin(options: InitOptions, type: string, plugin: any) {
   if (!options.appId || !options.dsn) {

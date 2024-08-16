@@ -84,6 +84,7 @@ app.post("/reportData", async (req, res) => {
     } else {
       // 使用 web beacon 上报数据
       let data = await coBody.json(req);
+      console.log("data", data);
       if (!data) return;
       if (data.type == "performance") {
         performanceList.push(data);

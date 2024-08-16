@@ -23,7 +23,7 @@ export abstract class BaseFunctionPlugin {
     this.name = name;
   }
   // 监听方法
-  abstract monitor(notify: Function): void;
+  abstract monitor(): void;
   // 数据转换
   abstract transform(data: any): void;
   // 数据消费

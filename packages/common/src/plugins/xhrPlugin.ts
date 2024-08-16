@@ -1,5 +1,5 @@
 import { BaseFunctionPlugin } from "../base";
-import { global } from "../global";
+import { global, _Umoni } from "../global";
 import { replaceAop, on } from "../replace";
 import { ErrorPluginName, EVENTTYPES, HTTPTYPE } from "@u-moni/types";
 
@@ -10,9 +10,9 @@ export class xhrPlugin extends BaseFunctionPlugin {
     this.name = ErrorPluginName.XHR;
   }
   // 监听方法
-  monitor(notify: Function): void {
+  monitor(): void {
     // 之前在use那注册的时候就绑定了this为对应的大插件实例
-    xhrMonitor.call(this, notify);
+    xhrMonitor.call(this);
   }
   // 数据转换
   transform(data: any): void {}
@@ -20,10 +20,12 @@ export class xhrPlugin extends BaseFunctionPlugin {
   consumer(data: any): void {}
 }
 
-function xhrMonitor(this: any, notify: Function) {
+function xhrMonitor(this: any) {
   if (!("XMLHttpRequest" in global)) {
     return;
   }
+  const Subscribe = _Umoni.subscribe;
+  const notify = Subscribe.notify.bind(Subscribe);
   const originalXhrProto = XMLHttpRequest.prototype;
   // aop 面向切面编程，增强（重写）原有函数
   replaceAop(
