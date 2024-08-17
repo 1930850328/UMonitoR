@@ -1,5 +1,17 @@
 # @u-moni/error
 
+## 2.4.0
+
+### Minor Changes
+
+- complete report and errorPlugin
+
+### Patch Changes
+
+- Updated dependencies
+  - @u-moni/common@1.4.0
+  - @u-moni/types@1.2.0
+
 ## 2.3.0
 
 ### Minor Changes

@@ -8,3 +8,4 @@ export * from "./src/subscribe";
 export * from "./src/replace";
 export * from "./src/plugins/index";
 export * from "./src/transport";
+export * from "./src/utils";

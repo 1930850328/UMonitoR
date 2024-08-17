@@ -9,3 +9,11 @@ export function vaildType(key: string, value: any, type: string): any {
     `Umoni: ${key}期望传入${type}类型，目前是${getType(value)}类型`,
   );
 }
+
+export function isString(value: any): boolean {
+  return getType(value) === "string";
+}
+
+export function isNumber(value: any): boolean {
+  return getType(value) === "number";
+}

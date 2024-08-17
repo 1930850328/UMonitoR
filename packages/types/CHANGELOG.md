@@ -1,5 +1,11 @@
 # @u-moni/types
 
+## 1.2.0
+
+### Minor Changes
+
+- complete report and errorPlugin
+
 ## 1.1.0
 
 ### Minor Changes

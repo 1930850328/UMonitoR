@@ -3,12 +3,14 @@ import handleException from "./handleException";
 
 class Transport {
   dsn: string;
+  quene: any[];
   constructor() {
     this.dsn = "";
+    this.quene = [];
   }
   send(data: any) {
     console.log("send", data);
-    this.dsn = getOptionFlag(`${data.type}Dsn`);
+    this.dsn = getOptionFlag(`${data.sdkType}Dsn`);
     const reportData = this.addCommonData(data);
     if (reportData) {
       // 优先使用sendBeacon 上报，若数据量大，再使用图片打点上报和fetch上报
@@ -29,7 +31,7 @@ class Transport {
 
   addCommonData(data: any) {
     const commonData = {
-      appId: getOptionFlag(`${data.type}AppId`),
+      appId: getOptionFlag(`${data.sdkType}AppId`),
       url: document.location.href,
       userAgent: window.navigator.userAgent,
       title: document.title,
@@ -42,15 +44,41 @@ class Transport {
   }
 
   sendByImg(dsn: string, data: any) {
-    const img = new Image();
-    img.src = `${dsn}?data=${JSON.stringify(data)}`;
+    const requestFn = () => {
+      const img = new Image();
+      img.src = `${dsn}?data=${JSON.stringify(data)}`;
+    };
+    this.addFn(requestFn);
   }
 
   sendByXhr(dsn: string, data: any) {
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", dsn, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify(data));
+    const requestFn = () => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", dsn, true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify(data));
+    };
+    this.addFn(requestFn);
+  }
+
+  addFn(fn: Function) {
+    this.quene.push(fn);
+    if ("requestIdleCallback" in global) {
+      // 优先使用requestIdleCallback上报
+      requestIdleCallback(() => this.flushStack());
+    } else if ("Promise" in global) {
+      // 其次使用微任务上报
+      Promise.resolve().then(() => this.flushStack());
+    } else {
+      fn();
+    }
+  }
+
+  flushStack() {
+    while (this.quene.length) {
+      const fn = this.quene.shift();
+      fn();
+    }
   }
 }
 if (!_Umoni.transport) {

@@ -1,11 +1,13 @@
 import { BaseFunctionPlugin } from "../base";
 import { global, _Umoni, getFlag } from "../global";
-import { on } from "../../index";
+import { on, interceptStr, getUniqueId } from "../../index";
 import { ErrorPluginName, EVENTTYPES } from "@u-moni/types";
 import ErrorStackParser from "error-stack-parser";
 
 interface ErrorTarget {
   target?: {
+    src?: string;
+    href?: string;
     localName?: string;
   };
   error?: any;
@@ -25,6 +27,11 @@ export class commonErrorPlugin extends BaseFunctionPlugin {
   }
   // 数据转换
   transform(data: any): void {
+    data.id = getUniqueId();
+    data.sdkName = getFlag(`${EVENTTYPES.ERROR}SdkName`);
+    data.sdkVersion = getFlag(`${EVENTTYPES.ERROR}SdkVersion`);
+    data.sdkType = "error";
+    data.status = "error";
     return data;
   }
   // 数据消费
@@ -49,55 +56,46 @@ export function handleError(ev: ErrorTarget): void {
   const notify = Subscribe.notify.bind(Subscribe);
 
   const target = ev.target;
+
+  // js错误
   if (!target || (ev.target && !ev.target.localName)) {
     // vue和react捕获的报错使用ev解析，异步错误使用ev.error解析
     const stackFrame = ErrorStackParser.parse(!target ? ev : ev.error)[0];
     const { fileName, columnNumber, lineNumber } = stackFrame;
     const errorData = {
-      type: EVENTTYPES.ERROR,
-      sdkName: getFlag(`${EVENTTYPES.ERROR}SdkName`),
-      sdkVersion: getFlag(`${EVENTTYPES.ERROR}SdkVersion`),
-      status: "error",
-      time: Date.now(),
+      type: EVENTTYPES.JSERROR, // 什么类型的事件
+      time: Date.now(), // 错误发生时间
       message: ev.message,
       fileName,
       line: lineNumber,
       column: columnNumber,
     };
-    //   breadcrumb.push({
-    //     type: EVENTTYPES.ERROR,
-    //     category: breadcrumb.getCategory(EVENTTYPES.ERROR),
-    //     data: errorData,
-    //     time: Date.now(),
-    //     status: STATUS_CODE.ERROR,
-    //   });
-    //   const hash: string = getErrorUid(
-    //     `${EVENTTYPES.ERROR}-${ev.message}-${fileName}-${columnNumber}`
-    //   );
-    //   // 开启repeatCodeError第一次报错才上报
-    //   if (!options.repeatCodeError || (options.repeatCodeError && !hashMapExist(hash))) {
-    //  transport.send(errorData);
-    //   }
 
-    //
-    notify(EVENTTYPES.ERROR, errorData);
+    const hash: string = `${EVENTTYPES.JSERROR}-${ev.message}-${fileName}-${columnNumber}`; // hash后面也可以拼time，这样就能做到每秒上报一次
+    // 重复错误不上报
+    if (!hashInMap(hash)) {
+      notify(EVENTTYPES.ERROR, errorData);
+    }
   }
 
   // 资源加载报错
   if (target?.localName) {
-    // 提取资源加载的信息
-    //   const data = resourceTransform(target);
-    //   breadcrumb.push({
-    //     type: EVENTTYPES.RESOURCE,
-    //     category: breadcrumb.getCategory(EVENTTYPES.RESOURCE),
-    //     status: STATUS_CODE.ERROR,
-    //     time: getTimestamp(),
-    //     data,
-    //   });
-    //   return transportData.send({
-    //     ...data,
-    //     type: EVENTTYPES.RESOURCE,
-    //     status: STATUS_CODE.ERROR,
-    //   });
+    const errorData = {
+      type: EVENTTYPES.RESOURCEERROR,
+      time: Date.now(), // 错误发生时间
+      message:
+        (interceptStr(target.src as string, 100) ||
+          interceptStr(target.href as string, 100)) + " 加载失败",
+      fileName: target.localName,
+    };
+    notify(EVENTTYPES.ERROR, errorData);
   }
+}
+
+function hashInMap(hash: String) {
+  const flag = _Umoni.errorMap.has(hash);
+  if (!flag) {
+    _Umoni.errorMap.set(hash, true);
+  }
+  return flag;
 }

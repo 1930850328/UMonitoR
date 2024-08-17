@@ -18,6 +18,7 @@ class Umoni {
 export const global = getWindow();
 global.__Umoni__ = global.__Umoni__ || new Umoni();
 export const _Umoni = global.__Umoni__ as UmoniType;
+_Umoni.errorMap = new Map();
 
 export function hasFlag(type: string) {
   return _Umoni[type] ? true : false;
