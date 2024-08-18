@@ -35,3 +35,9 @@ export function installPlugin(
   };
   initPlugin(options, type, plugin);
 }
+
+export function handleReactError(err: Error): void {
+  if (hasFlag("react")) return;
+  setFlag("react", true);
+  handleError(err);
+}

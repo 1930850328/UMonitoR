@@ -1,7 +1,9 @@
 # u-moni
 
 <div align="center">
-<img src="https://mp-d322ff4c-eb38-4255-92aa-03c9d6dd9858.cdn.bspapp.com/u-moni.png" alt="" style="width:100px"><p style="font-weight:800"> U_MONI</p>
+<div style="display:flex;justify-content:center;align-items:center">
+<img src="https://mp-d322ff4c-eb38-4255-92aa-03c9d6dd9858.cdn.bspapp.com/u-moni.png" alt="" style="width:100px"><p style="font-weight:800;padding-top:10px"> U_MONI</p>
+</div> 
 <p> A Lightweight SDK For Monitor Web</p>
 <p>一款轻量级的前端监控SDK</p>
 
@@ -83,6 +85,26 @@ app.use(error, {
 
 app.use(performancen, { ... });
 app.use(recordscreen, { ... });
+```
+
+## React 安装说明
+
+```javascript
+import error from '@u-moni/error';
+import performance from '@u-moni/performance';
+import recordscreen from '@u-moni/recordscreen';
+
+error.init({
+  dsn: 'http://aaa.com/', // 上报的地址
+  appId: 'project1', // 项目唯一的id
+  isMonitorXHR: true, // 是否监控xhr
+  isMonitorFetch: true, // 是否监控fetch
+  isMonitorError: true, // 是否监控error事件
+  isMonitorUnhandledrejection:false,// 是否监控 unhandledrejection
+});
+
+performancen.init({ ... });
+recordscreen.init({ ... });
 ```
 
 ## 常规配置项

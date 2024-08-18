@@ -1,5 +1,16 @@
 # @u-moni/error
 
+## 2.5.0
+
+### Minor Changes
+
+- support React project
+
+### Patch Changes
+
+- Updated dependencies
+  - @u-moni/common@1.6.0
+
 ## 2.4.1
 
 ### Patch Changes
