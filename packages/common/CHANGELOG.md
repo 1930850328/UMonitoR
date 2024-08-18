@@ -1,5 +1,11 @@
 # @u-moni/common
 
+## 1.5.0
+
+### Minor Changes
+
+- add xhrPlugin
+
 ## 1.4.0
 
 ### Minor Changes

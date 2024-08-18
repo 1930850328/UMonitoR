@@ -1,14 +1,14 @@
-# UMonitoR
+# u-moni
 
 <div align="center">
-<p style="font-weight:800"> UMonitoR  (UMR)</p>
+<img src="https://mp-d322ff4c-eb38-4255-92aa-03c9d6dd9858.cdn.bspapp.com/u-moni.png" alt="" style="width:100px"><p style="font-weight:800"> U_MONI</p>
 <p> A Lightweight SDK For Monitor Web</p>
 <p>一款轻量级的前端监控SDK</p>
 
 [![npm version](https://img.shields.io/npm/v/@u-moni/error.svg?style=flat-square)](https://www.npmjs.com/package/@u-moni/error)
 [![license](https://img.shields.io/github/license/clouDr-f2e/mitojs)](https://www.npmjs.com/package/@u-moni/error)
 [![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![GitHub last commit](https://img.shields.io/github/last-commit/1930850328/UMonitoR.svg?style=flat-square)](https://github.com/1930850328/UMonitoR)
+[![GitHub last commit](https://img.shields.io/github/last-commit/1930850328/u-moni.svg?style=flat-square)](https://github.com/1930850328/u-moni)
 
 </div>
 

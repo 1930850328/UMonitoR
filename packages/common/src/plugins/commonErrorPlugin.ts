@@ -3,6 +3,7 @@ import { global, _Umoni, getFlag } from "../global";
 import { on, interceptStr, getUniqueId } from "../../index";
 import { ErrorPluginName, EVENTTYPES } from "@u-moni/types";
 import ErrorStackParser from "error-stack-parser";
+import { addSign } from "./commonFn";
 
 interface ErrorTarget {
   target?: {
@@ -27,10 +28,7 @@ export class commonErrorPlugin extends BaseFunctionPlugin {
   }
   // 数据转换
   transform(data: any): void {
-    data.id = getUniqueId();
-    data.sdkName = getFlag(`${EVENTTYPES.ERROR}SdkName`);
-    data.sdkVersion = getFlag(`${EVENTTYPES.ERROR}SdkVersion`);
-    data.sdkType = "error";
+    addSign(data, "error");
     data.status = "error";
     return data;
   }

@@ -1,6 +1,6 @@
 {
   "name": "@u-moni/performance",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "description": "",
   "main": "index.ts",
   "module": "dist/index.esm.js",

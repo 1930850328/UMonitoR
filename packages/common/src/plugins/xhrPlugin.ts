@@ -2,6 +2,8 @@ import { BaseFunctionPlugin } from "../base";
 import { global, _Umoni } from "../global";
 import { replaceAop, on } from "../replace";
 import { ErrorPluginName, EVENTTYPES, HTTPTYPE } from "@u-moni/types";
+import { fromHttpStatus } from "../utils";
+import { addSign } from "./commonFn";
 
 export class xhrPlugin extends BaseFunctionPlugin {
   name: ErrorPluginName.XHR;
@@ -15,11 +17,21 @@ export class xhrPlugin extends BaseFunctionPlugin {
     xhrMonitor.call(this);
   }
   // 数据转换
-  transform(data: any): void {}
+  transform(data: any): any {
+    console.log("xhrPlugin monitor", data);
+    // 添加标志
+    const res = transformData(data);
+    addSign(res, "error");
+    return res;
+  }
   // 数据消费
-  consumer(data: any): void {}
+  consumer(data: any): void {
+    const transport = _Umoni.transport;
+    transport.send(data);
+  }
 }
 
+// 重写xhr的open和send方法去监听xhr的请求
 function xhrMonitor(this: any) {
   if (!("XMLHttpRequest" in global)) {
     return;
@@ -27,13 +39,13 @@ function xhrMonitor(this: any) {
   const Subscribe = _Umoni.subscribe;
   const notify = Subscribe.notify.bind(Subscribe);
   const originalXhrProto = XMLHttpRequest.prototype;
+
   // aop 面向切面编程，增强（重写）原有函数
   replaceAop(
     originalXhrProto,
     "open",
     (originalOpen: (...args: any) => void) => {
       return function (this: any, ...args: any[]): void {
-        console.log("xhr open", this, args);
         this.umoni_xhr = {
           method: args[0] ? args[0].toUpperCase() : args[0],
           url: args[1],
@@ -72,4 +84,47 @@ function xhrMonitor(this: any) {
     },
   );
   console.log("xhr监控启动");
+}
+
+function transformData(data: any) {
+  let message: any = "";
+  const {
+    elapsedTime,
+    time,
+    method = "",
+    type,
+    Status = 200,
+    response,
+    requestData,
+  } = data;
+  let status;
+  if (Status === 0) {
+    status = "error";
+    message =
+      elapsedTime <= 30 * 1000
+        ? `请求失败，Status值为:${Status}`
+        : "请求失败，接口超时";
+  } else if ((Status as number) < 400) {
+    status = "ok";
+  } else {
+    status = "error";
+    message = `请求失败，Status值为:${Status}，${fromHttpStatus(Status as number)}`;
+  }
+  message = `${data.url}; ${message}`;
+  return {
+    url: data.url,
+    time,
+    status,
+    elapsedTime,
+    message,
+    requestData: {
+      httpType: type as string,
+      method,
+      data: requestData || "",
+    },
+    response: {
+      Status,
+      data: status == "error" ? response : null,
+    },
+  };
 }

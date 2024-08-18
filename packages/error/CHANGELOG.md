@@ -1,5 +1,12 @@
 # @u-moni/error
 
+## 2.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @u-moni/common@1.5.0
+
 ## 2.4.0
 
 ### Minor Changes

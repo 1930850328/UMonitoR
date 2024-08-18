@@ -5,20 +5,17 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
+    <div style="display: flex; justify-content: center; align-items: center">
+      <img
+        src="https://mp-d322ff4c-eb38-4255-92aa-03c9d6dd9858.cdn.bspapp.com/u-moni.png"
+        alt=""
+        style="width: 100px"
+      />
+      <div style="font-size: 24px">U-moni 测试前端</div>
+    </div>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/"></RouterLink>
       </nav>
     </div>
   </header>
