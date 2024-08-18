@@ -1,5 +1,11 @@
 # @u-moni/types
 
+## 1.2.1
+
+### Patch Changes
+
+- w
+
 ## 1.2.0
 
 ### Minor Changes

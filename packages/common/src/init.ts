@@ -9,7 +9,6 @@ export function initPlugin(options: InitOptions, type: string, plugin: any) {
     );
   }
   if (options.disabled) return;
-
   // 启动插件
   new plugin(options);
 }
@@ -20,19 +19,20 @@ export function installPlugin(
   type: string,
   plugin: any,
 ) {
-  if (hasFlag("vue")) return;
-  setFlag("vue", true);
-  const handler = Vue.config.errorHandler;
-  // vue项目在Vue.config.errorHandler中上报错误
-  Vue.config.errorHandler = function (
-    err: Error,
-    instance: any,
-    info: string,
-  ): void {
-    console.log(err, instance, info);
-    handleError(err);
-    if (handler) handler.apply(null, [err, instance, info]);
-  };
+  if (hasFlag("vue")) {
+    setFlag("vue", true);
+    const handler = Vue.config.errorHandler;
+    // vue项目在Vue.config.errorHandler中上报错误
+    Vue.config.errorHandler = function (
+      err: Error,
+      instance: any,
+      info: string,
+    ): void {
+      console.log(err, instance, info);
+      handleError(err);
+      if (handler) handler.apply(null, [err, instance, info]);
+    };
+  }
   initPlugin(options, type, plugin);
 }
 

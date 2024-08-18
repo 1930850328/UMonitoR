@@ -1,6 +1,6 @@
 {
   "name": "@u-moni/performance",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "",
   "main": "index.ts",
   "module": "dist/index.esm.js",
@@ -15,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "@u-moni/types": "workspace:*",
-    "@u-moni/common": "workspace:*"
+    "@u-moni/common": "workspace:*",
+    "web-vitals": "^3.1.0"
   },
   "repository": {
     "type": "git",

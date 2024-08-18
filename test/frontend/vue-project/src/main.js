@@ -7,6 +7,7 @@ import App from "./App.vue";
 import router from "./router";
 
 import Umoni from "../../../../packages/error";
+import performance from "../../../../packages/performance";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 
@@ -16,6 +17,10 @@ app.use(createPinia());
 app.use(ElementPlus);
 app.use(router);
 app.use(Umoni, {
+  dsn: "/reportData",
+  appId: "123",
+});
+app.use(performance, {
   dsn: "/reportData",
   appId: "123",
 });

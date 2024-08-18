@@ -1,4 +1,5 @@
 import { SpanStatus } from "./base";
+import { _Umoni } from "./global";
 import { isString } from "./vaildType";
 
 export function throttle(fn: Function, delay: number) {
@@ -63,4 +64,23 @@ export function fromHttpStatus(httpStatus: any) {
     }
   }
   return SpanStatus.UnknownError;
+}
+
+export function use(this: any, FunctionPlugin: any): void {
+  const Subscribe = _Umoni.subscribe;
+  const plugin = new FunctionPlugin();
+  if (!plugin || !plugin.name) return;
+  // 大概逻辑就是：发布订阅中心订阅插件的事件，当事件发生时，触发发布订阅中心的notify方法去执行插件的处理数据方法
+
+  // 调用插件的处理数据方法（格式转换 & 消费）
+  const process = (...args: any[]) => {
+    // 转换格式
+    const res = plugin.transform.apply(plugin, args);
+    // 消费数据（）
+    plugin.consumer(res);
+  };
+
+  Subscribe?.sub(plugin.name, process);
+  // 调用插件的监听方法
+  plugin.monitor.call(this);
 }

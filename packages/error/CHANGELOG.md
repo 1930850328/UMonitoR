@@ -1,5 +1,14 @@
 # @u-moni/error
 
+## 3.0.1
+
+### Patch Changes
+
+- w
+- Updated dependencies
+  - @u-moni/common@2.0.1
+  - @u-moni/types@1.2.1
+
 ## 3.0.0
 
 ### Major Changes

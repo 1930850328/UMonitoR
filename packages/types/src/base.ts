@@ -11,7 +11,11 @@ export enum ErrorPluginName {
   UNHANDLEDREJECTION = "unhandledrejection",
 }
 
-export type FunctionPluginName = ErrorPluginName;
+export enum PerformancePluginName {
+  BEHAVIOR = "behavior",
+}
+
+export type FunctionPluginName = ErrorPluginName | PerformancePluginName;
 
 export interface Window {
   __Umoni__: {
@@ -40,6 +44,7 @@ export enum EVENTTYPES {
   VUE = "vue",
   REACT = "react",
   CUSTOM = "custom",
+  BEHAVIOR = "behavior",
   PERFORMANCE = "performance",
   RECORDSCREEN = "recordScreen",
   WHITESCREEN = "whiteScreen",

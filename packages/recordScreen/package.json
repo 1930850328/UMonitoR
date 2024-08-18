@@ -1,6 +1,6 @@
 {
   "name": "@u-moni/recordscreen",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "",
   "main": "index.ts",
   "module": "dist/index.esm.js",
