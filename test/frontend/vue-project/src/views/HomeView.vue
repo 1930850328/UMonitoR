@@ -3,6 +3,7 @@
     <el-button type="primary" @click="jsErr">js错误</el-button>
     <el-button type="primary" @click="xhrErr">xhr错误</el-button>
     <el-button type="primary" @click="fetchErr">fetch错误</el-button>
+    <el-button type="primary" @click="unhandlerErr">异步错误</el-button>
   </div>
 </template>
 <script>
@@ -26,10 +27,19 @@ export default {
       xhr.send();
     },
     fetchErr() {
-      fetch("http://localhost:3000/api", {
-        method: "GET",
-      }).then((res) => {
-        return res.json();
+      fetch("https://jsonplaceholder.typicode.com/posts/a", {
+        method: "POST",
+        header: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        body: { id: 1 },
+      });
+    },
+    unhandlerErr() {
+      new Promise((resolve) => {
+        let person = {};
+        person.name.age();
+        resolve();
       });
     },
   },

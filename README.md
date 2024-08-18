@@ -10,7 +10,7 @@
 [![npm version](https://img.shields.io/npm/v/@u-moni/error.svg?style=flat-square)](https://www.npmjs.com/package/@u-moni/error)
 [![license](https://img.shields.io/github/license/clouDr-f2e/mitojs)](https://www.npmjs.com/package/@u-moni/error)
 [![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![GitHub last commit](https://img.shields.io/github/last-commit/1930850328/u-moni.svg?style=flat-square)](https://github.com/1930850328/u-moni)
+[![GitHub last commit](https://img.shields.io/github/last-commit/1930850328/u-moni.svg?style=flat-square)](https://github.com/1930850328/UMonitoR)
 
 </div>
 

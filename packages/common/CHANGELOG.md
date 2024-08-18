@@ -1,5 +1,11 @@
 # @u-moni/common
 
+## 2.0.0
+
+### Major Changes
+
+- complete errorPlugin
+
 ## 1.7.0
 
 ### Minor Changes

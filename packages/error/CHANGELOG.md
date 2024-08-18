@@ -1,5 +1,16 @@
 # @u-moni/error
 
+## 3.0.0
+
+### Major Changes
+
+- complete errorPlugin
+
+### Patch Changes
+
+- Updated dependencies
+  - @u-moni/common@2.0.0
+
 ## 2.6.0
 
 ### Minor Changes

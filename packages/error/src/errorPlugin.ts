@@ -6,6 +6,7 @@ import {
   setFlag,
   xhrPlugin,
   fetchPlugin,
+  unhandledrejectionPlugin,
   commonErrorPlugin,
 } from "@u-moni/common";
 import { PluginName, ErrorInitOptions } from "@u-moni/types";
@@ -70,8 +71,7 @@ export class ErrorPlugin extends BasePlugin {
     this.isMonitorXHR && this.use(xhrPlugin);
     this.isMonitorFetch && this.use(fetchPlugin);
     this.isMonitorError && this.use(commonErrorPlugin);
-    this.isMonitorUnhandledrejection &&
-      console.log("监控unhandledrejection事件");
+    this.isMonitorUnhandledrejection && this.use(unhandledrejectionPlugin);
     console.log(`${this.SDK_NAME}${this.SDK_VERSION} install success!!!`);
   }
   use(FunctionPlugin: any): void {

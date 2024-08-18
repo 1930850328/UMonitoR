@@ -1,6 +1,6 @@
 import { BaseFunctionPlugin } from "../base";
-import { global, _Umoni, getFlag } from "../global";
-import { on, interceptStr, getUniqueId } from "../../index";
+import { global, _Umoni } from "../global";
+import { on, interceptStr } from "../../index";
 import { ErrorPluginName, EVENTTYPES } from "@u-moni/types";
 import ErrorStackParser from "error-stack-parser";
 import { addSign } from "./commonFn";
