@@ -1,5 +1,12 @@
 # @u-moni/recordscreen
 
+## 2.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @u-moni/common@1.7.0
+
 ## 2.2.0
 
 ### Minor Changes

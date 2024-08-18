@@ -2,6 +2,7 @@
   <div class="about">
     <el-button type="primary" @click="jsErr">js错误</el-button>
     <el-button type="primary" @click="xhrErr">xhr错误</el-button>
+    <el-button type="primary" @click="fetchErr">fetch错误</el-button>
   </div>
 </template>
 <script>
@@ -23,6 +24,13 @@ export default {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "http://localhost:3000/api", true);
       xhr.send();
+    },
+    fetchErr() {
+      fetch("http://localhost:3000/api", {
+        method: "GET",
+      }).then((res) => {
+        return res.json();
+      });
     },
   },
 };

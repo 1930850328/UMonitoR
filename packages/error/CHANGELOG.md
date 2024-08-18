@@ -1,5 +1,16 @@
 # @u-moni/error
 
+## 2.6.0
+
+### Minor Changes
+
+- add fetchPlugin
+
+### Patch Changes
+
+- Updated dependencies
+  - @u-moni/common@1.7.0
+
 ## 2.5.0
 
 ### Minor Changes
